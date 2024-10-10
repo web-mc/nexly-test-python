@@ -18,11 +18,11 @@ def scan_pdf(args: dict) -> None:
 
         match validator_name:
             case "company_name":
-                company_name = pdf.get_company_name()
-                validator = VALIDATORS[validator_name](company_name)
+                raw_data_to_check = pdf.get_company_name()
+                validator = VALIDATORS[validator_name](raw_data_to_check)
                 validator.validate(value_to_check)
 
             case "date":
-                report_date = pdf.get_report_date()
-                validator = VALIDATORS[validator_name](report_date)
+                raw_data_to_check = pdf.get_report_date()
+                validator = VALIDATORS[validator_name](raw_data_to_check)
                 validator.validate(value_to_check)
