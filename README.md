@@ -56,4 +56,4 @@ Date validation failed: expected "2025-12-31", found "2023-12-31".
 - *Fork the repository.*
 - *Create a new branch* for your solution.
 - *Push your code* to the new branch.
-- *Send the results* for review via Telegram: @ashugaev
+- *Send the results* for review via Telegram: https://t.me/ashugaev
