@@ -22,6 +22,11 @@ class PdfExctarctor:
         return page_text.split("\n")[0].strip()
 
     def get_report_date(self) -> None | date:
+        # Находит во втрой строке дату
+        # регулярка привязана к тексту в шаблоене "for the year ended {month} {day}, {year}"
+
+        # Можно добавить вариантов регулярок
+        # и искать совпадения в цикле пока не найдём первое совпадение
         page = self.pdf.pages[0]
         page_text = page.extract_text()
         pattern = r"for\sthe\syear\sended\s(\w*)\s(.*)"
