@@ -22,7 +22,7 @@ We need to build a pipeline to validate PDF data, specifically targeting the com
   - *Clear Feedback:* In case of validation failure, each validator should return a detailed message indicating what failed, along with the expected versus actual values.
 
 ### Expected Result
-####Modules:
+#### Modules:
 - *General Pipeline Logic:* Manages the extraction and validation flow, coordinating data between extractors and validators.
 - *Two Extractors:*
   - *Company Name Extractor:* Extracts the company name from the PDF's cover page.
