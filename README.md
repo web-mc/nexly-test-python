@@ -51,3 +51,9 @@ Expected output:
 Company name validation failed: expected "Lol", found "Bluegem III GP SARL".
 Date validation failed: expected "2025-12-31", found "2023-12-31".
 ```
+
+### How to Send Results for Review
+- *Fork the repository.*
+- *Create a new branch* for your solution.
+- *Push your code* to the new branch.
+- *Send the results* for review via Telegram: @ashugaev
