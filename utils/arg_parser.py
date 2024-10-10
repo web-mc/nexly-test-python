@@ -1,4 +1,5 @@
 import argparse
+from typing import Any
 from datetime import date
 from logging import getLogger
 
@@ -22,7 +23,7 @@ def validate_date(iso_date: str) -> None | date:
         raise
 
 
-def parse_args_to_validate() -> None | dict:
+def parse_args_to_validate() -> None | dict[str, Any]:
     parser = argparse.ArgumentParser()
     parser.add_argument("--company_name", type=str, required=False)
     parser.add_argument("--date", type=validate_date, required=False)
