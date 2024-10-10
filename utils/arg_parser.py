@@ -22,14 +22,15 @@ def validate_date(iso_date: str) -> None | date:
         raise
 
 
-def parse_targets_to_validate() -> None | argparse.Namespace:
+def parse_args_to_validate() -> None | dict:
     parser = argparse.ArgumentParser()
     parser.add_argument("--company_name", type=str, required=False)
     parser.add_argument("--date", type=validate_date, required=False)
-    args = parser.parse_args()
+    args = parser.parse_args().__dict__
 
-    if not all((args.company_name, args.date)):
+    if not any(args.values()):
+        logger.warning("Can't find targets to validate. Nothing to validate.")
         return
 
-    logger.debug(f"Got args:{args}")
+    logger.debug(f"Got args: {args}")
     return args

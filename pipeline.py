@@ -2,17 +2,21 @@ from logging import getLogger
 from logging.config import dictConfig
 
 from config.log import LOGGERS
-from utils.arg_parser import parse_targets_to_validate
 
+from scanners.pdf_scanner import scan_pdf
+from utils.arg_parser import parse_args_to_validate
 
 
 def main() -> None:
-    args = parse_targets_to_validate()
+    logger.info("Scan pipeline started.")
+
+    args = parse_args_to_validate()
     if not args:
-        logger.info("Nothing to validate.")
         return
 
-    logger.info("Scan pipeline started.")
+    scan_pdf(args)
+
+    logger.info("Scan pipeline finished successfully.")
 
 
 if __name__ == "__main__":
@@ -21,6 +25,6 @@ if __name__ == "__main__":
 
     try:
         main()
-        logger.info("Scan pipeline finished successfully.")
     except Exception as e:
         logger.info(f"Scan pipeline finished with error: {e}.")
+        logger.exception(e)
