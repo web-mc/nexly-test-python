@@ -33,5 +33,7 @@ def parse_args_to_validate() -> None | dict[str, Any]:
         logger.warning("Can't find targets to validate. Nothing to validate.")
         return
 
-    logger.debug(f"Got args: {args}")
-    return args
+    # Оставляем все ключи, где значение != None
+    not_none_args = {k: v for k, v in args.items() if v is not None}
+    logger.debug(f"Got args: {not_none_args}")
+    return not_none_args

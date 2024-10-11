@@ -1,10 +1,10 @@
 import re
-from pathlib import Path
 from datetime import date
 from logging import getLogger
 
 from pypdf import PdfReader
 
+from config import app_config
 from .utils import MONTH_MAPPING
 
 
@@ -12,9 +12,8 @@ logger = getLogger()
 
 
 class PdfExctarctor:
-    def __init__(self, pdf_file: Path) -> None:
-        self.pdf = PdfReader(pdf_file)
-        self.total_pages = len(self.pdf.pages)
+    def __init__(self) -> None:
+        self.pdf = self._get_pdf_file_to_scan()
 
     def get_company_name(self) -> str:
         page = self.pdf.pages[0]
@@ -44,3 +43,20 @@ class PdfExctarctor:
         year = regex_date.split(",")[1].strip()
 
         return date.fromisoformat(f"{year}-{month}-{day}")
+
+    def _get_pdf_file_to_scan(self) -> None | PdfReader:
+        """
+        Checks the folder, file and its format.
+        If everything is OK, returns the path to the file.
+        """
+
+        scan_dir = app_config.app_dir / "report_to_scan"
+        if not scan_dir.exists():
+            raise FileNotFoundError(f"Dir '{scan_dir}' doesn't exists.")
+
+        file_to_scan = scan_dir / "report.pdf"
+        if not file_to_scan.exists():
+            raise FileNotFoundError(f"File '{file_to_scan}' doesn't exists.")
+
+        logger.debug("Found PDF to scan.")
+        return PdfReader(file_to_scan)
