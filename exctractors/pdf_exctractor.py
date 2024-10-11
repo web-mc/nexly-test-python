@@ -21,8 +21,8 @@ class PdfExctarctor:
         return page_text.split("\n")[0].strip()
 
     def get_report_date(self) -> None | date:
-        # Находит во втрой строке дату
-        # регулярка привязана к тексту в шаблоене "for the year ended {month} {day}, {year}"
+        # Находит во второй строке дату
+        # регулярка привязана к тексту в шаблоне "for the year ended {month} {day}, {year}"
 
         # Можно добавить вариантов регулярок
         # и искать совпадения в цикле пока не найдём первое совпадение
