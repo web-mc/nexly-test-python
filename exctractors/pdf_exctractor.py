@@ -19,7 +19,7 @@ class PdfExctarctor:
         page_text = page.extract_text()
         return page_text.split("\n")[0].strip()
 
-    def get_report_date(self) -> None | date:
+    def get_report_date(self) -> date:
         page = self.pdf.pages[0]
         page_text = page.extract_text()
 
@@ -29,14 +29,13 @@ class PdfExctarctor:
         pattern = r"(\w+)\s+(\d{1,2}),\s+(\d+)"
         regex_res = re.search(pattern, page_text)
         if not regex_res:
-            logger.warning("Date. Check regex pattern.")
-            return
+            raise ValueError("Can't find the date. Check regex pattern.")
 
         month, day, year = regex_res.groups()
-        date = datetime.strptime(f"{year}-{month}-{day}", "%Y-%B-%d")
-        return date.date()
+        result_date = datetime.strptime(f"{year}-{month}-{day}", "%Y-%B-%d")
+        return result_date.date()
 
-    def _get_pdf_file_to_scan(self) -> None | PdfReader:
+    def _get_pdf_file_to_scan(self) -> PdfReader:
         """
         Checks the folder, file and its format.
         If everything is OK, returns the path to the file.

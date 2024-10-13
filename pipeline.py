@@ -3,8 +3,8 @@ from logging.config import dictConfig
 
 from config.log import LOGGERS
 
-from scanners.pdf_scanner import scan_pdf
-from utils.arg_parser import parse_args_to_validate
+from scanners import scan_pdf
+from utils import parse_args_to_validate
 
 
 def main() -> None:

@@ -9,7 +9,7 @@ logger = getLogger()
 
 def validate_date(iso_date: str) -> None | date:
     if not iso_date:
-        return
+        return None
 
     try:
         date_arg = date.fromisoformat(iso_date)
@@ -31,7 +31,7 @@ def parse_args_to_validate() -> None | dict[str, Any]:
 
     if not any(args.values()):
         logger.warning("Can't find targets to validate. Nothing to validate.")
-        return
+        return None
 
     # Оставляем все ключи, где значение != None
     not_none_args = {k: v for k, v in args.items() if v is not None}
