@@ -26,5 +26,5 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        logger.info(f"Scan pipeline finished with error: {e}.")
+        logger.info(f"Scan pipeline finished with error: {e}")
         logger.exception(e)

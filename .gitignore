@@ -2,3 +2,4 @@
 /venv
 notes.txt
 /junk
+/.mypy_cache
